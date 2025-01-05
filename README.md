@@ -135,6 +135,8 @@ As explored more deeply in the research section, there appear to be to be a few 
        - This would essentially result in needing to build competing specs to the current VC specs which would be very time consuming and have less likelihood of adoption of the RDF 1.2 specs already have adoption themselves.
 
 ## Groups and organisations with related interests
+
+Groups who may be interested are:
  - W3C verifiable credentials
  - IEEE verifiable credentials
  - Stanford Cryptography
