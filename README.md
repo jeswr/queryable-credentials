@@ -134,7 +134,9 @@ As explored more deeply in the research section, there appear to be to be a few 
      - Cons:
        - This would essentially result in needing to build competing specs to the current VC specs which would be very time consuming and have less likelihood of adoption of the RDF 1.2 specs already have adoption themselves.
 
-## Proposed research plan
+
+## Proposed Research Plan
+
 Based on the above, it seems to me that the most sensible way forward is to in parallel work on the following three streams of work:
   - Work on improved hashing algorithms that would begin to allow e.g. range proofs when added to the existing [BBS](https://www.w3.org/TR/vc-di-bbs/#test-vectors) VC spec.
   - Reach out to the authors of [Lean ZKP](https://eprint.iacr.org/2024/267.pdf) to understand the feasibility of implementing a solution on top of their work.
