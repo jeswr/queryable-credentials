@@ -7,11 +7,12 @@ This codebase contains research into queryable credentials; this started with th
 Verifiable Credentials are seeing a rise in popularity - with reference made to them across the European eUIDAS, UK DIATF and Australian trust frameworks. The key drivers appear to be the ability to prove data integrity through signatures, and the ability to selectively disclose attributes from Verifiable Credentials, thus enhancing privcy.
 
 At present we see the following limitations:
- - Provide a layer for *trust building* for data stored in decentralised B2C2B data transfers like those that take place on top of [Linked Web Storage](https://www.w3.org/groups/wg/lws/), and the [Semantic Web Agents]() that operate on top of them. Look [here]() for complimentary work that we are investigating on:
+ - We are unsure whether there is enough expressivity to provide a layer for *trust building* for data stored in decentralised B2C2B data transfers like those that take place on top of [Linked Web Storage](https://www.w3.org/groups/wg/lws/), and the [Semantic Web Agents]() that operate on top of them. Look [here]() for complimentary work that we are investigating on:
     - [trust evaluation]() to allow systems to evaluate what data they can use (sure the data may be signed, but how do you know whether to trust the signatory...)
     - relatedly, [trust negotiation]() to allow systems (incl. agents) to "discuss" which provenance, including signatures, they need to believe a given piece of data
     - [policy evaluation]() to allow systems (incl. agents) to establish what data they *can* share
     - relatedly, [policy creation and enforcement]() how do systems define their data sharing policies? Can systems create legal agreements with other systems to ensure legal safeguards are in place if data is not used beyond its intended purpose.
+ - There are Semantic design concerns with the current specs (see below)
 
 ## What is zero knowledge proof?
 
