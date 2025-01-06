@@ -7,7 +7,7 @@ This codebase contains research into queryable credentials; this started with th
 Verifiable Credentials are seeing a rise in popularity - with reference made to them across the European eUIDAS, UK DIATF and Australian trust frameworks. The key drivers appear to be the ability to prove data integrity through signatures, and the ability to selectively disclose attributes from Verifiable Credentials, thus enhancing privcy.
 
 At present we see the following limitations:
- - We are unsure whether there is enough expressivity to provide a layer for *trust building* for data stored in decentralised B2C2B data transfers like those that take place on top of [Linked Web Storage](https://www.w3.org/groups/wg/lws/), and the [Semantic Web Agents]() that operate on top of them. Look [here]() for complimentary work that we are investigating on:
+ - We are unsure whether there is enough expressivity to provide a layer for *trust building* for data stored in decentralised B2C2B data transfers like those that take place on top of [Linked Web Storage](https://www.w3.org/groups/wg/lws/), and the [Semantic Web Agents](https://www-sop.inria.fr/acacia/cours/essi2006/Scientific%20American_%20Feature%20Article_%20The%20Semantic%20Web_%20May%202001.pdf) that operate on top of them. Look [here]() for complimentary work that we are investigating on:
     - [trust evaluation]() to allow systems to evaluate what data they can use (sure the data may be signed, but how do you know whether to trust the signatory...)
     - relatedly, [trust negotiation]() to allow systems (incl. agents) to "discuss" which provenance, including signatures, they need to believe a given piece of data
     - [policy evaluation]() to allow systems (incl. agents) to establish what data they *can* share
@@ -23,7 +23,6 @@ Zero knowledge proofs can enable selective disclosure and derived disclosure of 
 Verifiable Credential Standards:
  - [W3C VC Data Model](https://www.w3.org/TR/vc-data-model-2.0/)
  - [IETF SD-JWT VCs](https://www.ietf.org/archive/id/draft-ietf-oauth-sd-jwt-vc-03.html)
-
 
 W3C BBS+ and ECDSA signature algorithms for enabling ZKP:
  - [ECDSA](https://www.w3.org/TR/vc-di-ecdsa/#representation-ecdsa-sd-2023)
@@ -97,13 +96,12 @@ As explored more deeply in the research section, there appear to be to be a few 
       - Would likely result in large proof size since proof is at level of assembly instruction execution rather than higher-order rule evaluation
 
  - Build on top of a related solution such as:
-   - [Circuitree](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9718332): A Datalog Reasoner in Zero-Knowledge
+   - [Circuitree](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9718332) [[code](https://gitlab.com/etrovub/smartnets/glycos/circuitree)]: A Datalog Reasoner in Zero-Knowledge
      - Pros:
        - Close to SPARQL technology (existing N3 reasoning and SPARQL querying engines are built on top of)
      - Cons:
        - Not tailored for proof of derived facts - and likely has large proofs size; instead is defined for full ZKP of arbitrary prolog execution.
-       - Cannot find public codebase (am trying to contact author)
-   - [PoneglyphDB](https://arxiv.org/pdf/2411.15031): ZKP of SQL Evaluation - in this case it would more likely that we build a related solution than an identical solution.
+   - [PoneglyphDB](https://arxiv.org/pdf/2411.15031) [[code](https://github.com/tuzijun111/halo2-TPCH)]: ZKP of SQL Evaluation - in this case it would more likely that we build a related solution than an identical solution.
      - Pros: 
        - It is a working solution for doing fully fledged ZKP proof of correct evalutation of a query engine that does not disclose the data used throughout the evaluation. 
      - Cons:
@@ -140,6 +138,7 @@ As explored more deeply in the research section, there appear to be to be a few 
 Based on the above, it seems to me that the most sensible way forward is to in parallel work on the following three streams of work:
   - Work on improved hashing algorithms that would begin to allow e.g. range proofs when added to the existing [BBS](https://www.w3.org/TR/vc-di-bbs/#test-vectors) VC spec.
   - Reach out to the authors of [Lean ZKP](https://eprint.iacr.org/2024/267.pdf) to understand the feasibility of implementing a solution on top of their work.
+  - Evaluate the feasibility of implementation on top of [Circuitree](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9718332).
   - Experiment with implementing some basic SPARQL opertions on top of [riskzero](https://risczero.com) to get a sense of how easy it is to build any kind of ZKP query evalutation on top of that systen - and what plumbing needs to be done to create the type of APIs that we want.
 
 
