@@ -157,3 +157,11 @@ Groups who may be interested are:
    - Path to adoption in  decentralisation projects such as Solid, [ActivtyPods](https://activitypods.org) and NextGraph.
    - Design that will allow Web Agents to operate over trusted data in a privacy preserving manner?
    - Operating best with the Web architecture and REST design principles
+
+## Support wanted
+
+To efficiently do this work I would want to work with:
+ - An expert on ZKVMs to collaborate in building out the riskzero based approach
+ - Input from the Stanford Crypto group on
+   - (1) whether it is feasible to work towards an enterprise-ready solution on top of their Lean approach
+   - (2) guidance on the best approach to take given they are the leading ZK experts and developed, e.g., the BBS+ algorithm
