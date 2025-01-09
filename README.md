@@ -164,3 +164,8 @@ To efficiently do this work I would want to work with:
  - Input from the Stanford Crypto group on
    - (1) whether it is feasible to work towards an enterprise-ready solution on top of their Lean approach
    - (2) guidance on the best approach to take given they are the leading ZK experts and developed, e.g., the BBS+ algorithm
+   - 
+
+## Preliminary findings
+
+It seems that it is possible to generate ZKPs out of the box using risczero and a slightly modified version of Oxigraph - early work can be seen at https://github.com/jeswr/risc0-sparql-poc
