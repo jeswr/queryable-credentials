@@ -115,6 +115,7 @@ As explored more deeply in the research section, there appear to be to be a few 
         - Codebase appears to have been unmaintained for last 8 months
         - Unclear how easy it would be to translate this to a production system - would a theorem prover be needed to make every implementation work?
         - Would likely need to collaborate directly with the original author to make this work.
+   - [ZKSMT](https://www.cs.yale.edu/homes/antonopoulos-timos/USENIX-Security-2024.pdf): Similar to Lean ZKP, but specifically targeted towards SAT problems
 
  - Try compose operations from existing W3C VC Specifications / build a queryable interface on top of them.
    - Pros:
