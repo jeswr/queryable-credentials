@@ -107,7 +107,7 @@ As explored more deeply in the research section, there appear to be to be a few 
      - Cons:
        - SPARQL `->` SQL rewrites is going to be a very messy approach if that is how we chose to go about it
        - It is not dealing with signatures; it is proving that SQL queries were evaluated correctly.
-   - [Lean ZKP](https://eprint.iacr.org/2024/267.pdf): A zero knowledge theorem prover compatible with lean4:
+   - [Lean ZKP](https://eprint.iacr.org/2024/267.pdf) [[code](https://github.com/emlaufer/zkpi)]: A zero knowledge theorem prover compatible with lean4:
       - Pros:
         - Specialised for proving that theorems are true in zero knowledge - including SAT and other formal logic problems. This is a problem that can easily be translated into "is the following query true given this set of facts".
         - Has a relatively small proof size according to the paper
