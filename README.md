@@ -27,6 +27,10 @@ Verifiable Credential Standards:
 W3C BBS+ and ECDSA signature algorithms for enabling ZKP:
  - [ECDSA](https://www.w3.org/TR/vc-di-ecdsa/#representation-ecdsa-sd-2023)
  - [BBS](https://www.w3.org/TR/vc-di-bbs/#test-vectors)
+  - Reference implementations:
+     - https://github.com/mattrglobal/jsonld-signatures-bbs
+     - This fork claims to support termwise disclosure, though it is unclear exactly what that means https://github.com/zkp-ld/jsonld-signatures-bbs
+     - For the direct signing: https://www.npmjs.com/package/@mattrglobal/bbs-signatures
 
 ## Initial Design Thoughts for a Queryable API
 
@@ -94,6 +98,8 @@ As explored more deeply in the research section, there appear to be to be a few 
     - Cons:
       - Feasibility unknown, requires advice from ZKVM expert or experimentation
       - Would likely result in large proof size since proof is at level of assembly instruction execution rather than higher-order rule evaluation
+    - Some projects that might serve as inspiration:
+      - https://github.com/Barkhausen-Institut/PQACL
 
  - Build on top of a related solution such as:
    - [Circuitree](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9718332) [[code](https://gitlab.com/etrovub/smartnets/glycos/circuitree)]: A Datalog Reasoner in Zero-Knowledge
@@ -124,7 +130,8 @@ As explored more deeply in the research section, there appear to be to be a few 
    - Cons:
      - **Likely deal breaker**: Will not have the expressivity of SPARQL or inference, in fact I'm not sure that anything other than choosing to show a subset of the originally issued VC is true with the current BBS or ECDSA specs - including the inability to perform e.g. range proofs over age statements. The reason for this claim is that the granularity of a signature is over the hash of an n-quad stringds (or a multiset of hashes of n-quad strings). This means that in order to do a range proof one would have to prove, in zero knowledge, that the string can be (1) parsed to a triple where the the subject is :Jesse the predicate is :dob and the object is some xsd:dateTime less than or equal to "03-01-2006"^^xsd:dateTime. 
    - Compromised approach
-     - It may be possible to improve the ability to do things like range proofs with some updates to the current specs. Most immediately coming to mind would be to change the strategy from hashing n-quads to, to perform salted hashing on each element of a triple (and for typed datatypes to separately hash the datatype, value and langtag) and then do a merkle-tree style rollup of the hashes and sign the root hash. That way the holder is able to selectively reveal and make claims about parts of triples; and directly apply range proofs on e.g. the value of a triple.
+     - It may be possible to improve the ability to do things like range proofs with some updates to the current specs. Most immediately coming to mind would be to change the strategy from hashing n-quads to, to perform salted hashing on each element of a triple (and for typed datatypes to separately hash the datatype, value and langtag) and then do a merkle-tree style rollup of the hashes and sign the root hash. That way the holder is able to selectively reveal and make claims about parts of triples; and directly apply range proofs on e.g. the value of a triple. Note there was an attempt at merkle-hash based signatures in https://github.com/w3c-ccg/Merkle-Disclosure-2021/?tab=readme-ov-file, but this still appears to be signing at the n-quad level.
+
 
  - Bespoke approaches:
    - Largely go from scratch; with something similar to the RDF 1.2 style API above in mind
