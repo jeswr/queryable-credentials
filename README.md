@@ -181,3 +181,7 @@ To efficiently do this work I would want to work with:
 ## Preliminary findings
 
 It seems that it is possible to generate ZKPs out of the box using risczero and a slightly modified version of Oxigraph - early work can be seen at https://github.com/jeswr/risc0-sparql-poc
+
+## Notes:
+ - Will be able to make this subsecond if implemented as a custom circuit, but that is a very expensive thing to do in terms of time investment. Circom is *not* an option if we want to have our proofs work at arbitrary depth. OTOH Halo2 will work, but is a lot of dev work.
+ - Alternatively, (1) do a proof checker in a ZKVM and then optimise the hell out of it
