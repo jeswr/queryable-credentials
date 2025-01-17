@@ -149,6 +149,10 @@ Based on the above, it seems to me that the most sensible way forward is to in p
   - Evaluate the feasibility of implementation on top of [Circuitree](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9718332).
   - Experiment with implementing some basic SPARQL opertions on top of [riskzero](https://risczero.com) to get a sense of how easy it is to build any kind of ZKP query evalutation on top of that systen - and what plumbing needs to be done to create the type of APIs that we want.
 
+## More general pointers 
+
+ - https://learn.0xparc.org/materials/circom/learning-group-1/functional-commitments
+ - https://eprint.iacr.org/2021/1530.pdf (MPC + SNARKS)
 
 ## Groups and organisations with related interests
 
