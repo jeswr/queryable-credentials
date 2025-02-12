@@ -22,6 +22,10 @@ Zero knowledge proofs can enable selective disclosure and derived disclosure of 
 
 Yes, for instance the [Digital Credentials Query Language (DCQL)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#dcql_query). However, such a query acts to filter for a set of existing credential structures - it does not perform any form of derivation or query *across* data from different credentials.
 
+## Existing VC/VP interop
+
+In general, the interop of VC's is quite messy - not because the concept behind any of the VC specifications is particularly complex, but because there are numerous specs defined by ISO/IEEE/IETF etc. that are all competing and thus require specs like [this interop profile](https://openid.github.io/oid4vc-haip/openid4vc-high-assurance-interoperability-profile-wg-draft.html) to begin to work together.
+
 ## Pointers for verifiable credentials + ZKP
 
 Verifiable Credential Standards:
