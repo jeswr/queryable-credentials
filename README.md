@@ -18,6 +18,10 @@ At present we see the following limitations:
 
 Zero knowledge proofs can enable selective disclosure and derived disclosure of signed data. Selective disclosure is sharing a subset of signed attributes, derived disclosure is proving that a property can be derived from a set of signed facts (e.g. I can prove that I am over 21 to a bar using a government signed statement about my DOB, without disclosing my DOB to the bar).
 
+## But don't query API's for credentials already exist?
+
+Yes, for instance the [Digital Credentials Query Language (DCQL)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#dcql_query). However, such a query acts to filter for a set of existing credential structures - it does not perform any form of derivation or query *across* data from different credentials.
+
 ## Pointers for verifiable credentials + ZKP
 
 Verifiable Credential Standards:
