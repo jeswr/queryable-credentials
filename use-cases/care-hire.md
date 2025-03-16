@@ -5,6 +5,7 @@
 This use case describes how a care hire company can verify a customer's eligibility to drive a Class C vehicle in the UK without directly accessing sensitive personal documents.
 
 In the traditional approach, the customer would need to provide multiple documents such as:
+
 - Driving license
 - License translation (if applicable)
 - Visa status
@@ -12,11 +13,13 @@ In the traditional approach, the customer would need to provide multiple documen
 - Passport
 
 The car hire company would then need to use licensed software to:
+
 - Determine which licenses are legally transferable to be used with Class C vehicles
 - Check whether the customer has a valid visa status
 - Verify whether the visa status allows the person to hire a car
 
 Instead, with queryable credentials, the customer can have a rule in their personal data store that:
+
 - Allows certified car hire companies to read only the data about which classes of car they are permitted to hire
 - Ensures the company is obliged to hold that information only for the duration of the car hire
 
@@ -32,7 +35,7 @@ sequenceDiagram
     CA->>CHC: Issues certification credential to car hire company
     Customer->>PDS: Stores credentials (driving license, visa, etc.)
     Customer->>PDS: Sets data access rules
-    
+  
     CHC->>Customer: Requests driving eligibility data
     Customer->>PDS: Forwards request to personal data store
     PDS->>PDS: Validates car hire company certification
@@ -45,6 +48,9 @@ sequenceDiagram
 ## Credential Examples
 
 ### 1. Driving License Credential
+
+<details>
+<summary>Click to expand Driving License Credential</summary>
 
 ```json
 {
@@ -92,8 +98,12 @@ sequenceDiagram
   }
 }
 ```
+</details>
 
 ### 2. Visa Status Credential
+
+<details>
+<summary>Click to expand Visa Status Credential</summary>
 
 ```json
 {
@@ -128,8 +138,12 @@ sequenceDiagram
   }
 }
 ```
+</details>
 
 ### 3. Car Hire Company Certification Credential
+
+<details>
+<summary>Click to expand Car Hire Company Certification Credential</summary>
 
 ```json
 {
@@ -163,8 +177,12 @@ sequenceDiagram
   }
 }
 ```
+</details>
 
 ### 4. Driving Eligibility Derived Credential
+
+<details>
+<summary>Click to expand Driving Eligibility Derived Credential</summary>
 
 ```json
 {
@@ -196,10 +214,12 @@ sequenceDiagram
   }
 }
 ```
+</details>
 
 ## Example Query
 
-The following is an example of a query that the car hire company might use to request the necessary information from the customer's personal data store:
+<details>
+<summary>Click to expand Example Query</summary>
 
 ```json
 {
@@ -253,10 +273,12 @@ The following is an example of a query that the car hire company might use to re
   ]
 }
 ```
+</details>
 
 ## Data Access Rules Example
 
-An example of a rule in the customer's personal data store that governs access to driving eligibility data:
+<details>
+<summary>Click to expand Data Access Rules Example</summary>
 
 ```json
 {
@@ -297,5 +319,6 @@ An example of a rule in the customer's personal data store that governs access t
   }
 }
 ```
+</details>
 
-This example demonstrates how queryable credentials can simplify the car hire process while protecting privacy and ensuring data minimization. The car hire company gets only the information it needs (ability to drive Class C vehicles in the UK), without handling or storing unnecessary sensitive personal documents. 
+This example demonstrates how queryable credentials can simplify the car hire process while protecting privacy and ensuring data minimization. The car hire company gets only the information it needs (ability to drive Class C vehicles in the UK), without handling or storing unnecessary sensitive personal documents.
