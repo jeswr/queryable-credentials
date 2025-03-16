@@ -451,3 +451,5 @@ This structure allows zero-knowledge proofs to attest that query results are der
 | Trust model | ⚠️ Trust individual credential issuers | ✅ Trust combinations of issuers for derived facts |
 
 This example demonstrates how queryable credentials with SPARQL and zero-knowledge proofs can significantly enhance privacy while providing exactly the information needed for the car hire process. The car hire company gets only the list of Class C vehicles the customer is eligible to drive, with cryptographic proof that this information is derived from trusted credentials, without revealing any underlying personal data.
+
+*Note*: Contents of this file, including examples were produced with the assistance of Generative AI.
