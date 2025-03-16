@@ -216,10 +216,14 @@ sequenceDiagram
 ```
 </details>
 
-## Example Query
+## Query Examples
+
+### Current Approach: DCQL (Digital Credentials Query Language)
 
 <details>
-<summary>Click to expand Example Query</summary>
+<summary>Click to expand DCQL Query Example</summary>
+
+The following is an example of a DCQL query that car hire companies must use today with existing Verifiable Credentials systems. This approach only filters for existing credential structures and cannot perform derivations across different credentials:
 
 ```json
 {
@@ -275,6 +279,120 @@ sequenceDiagram
 ```
 </details>
 
+### Proposed Approach: SPARQL with Zero-Knowledge Proof
+
+<details>
+<summary>Click to expand SPARQL Query Example</summary>
+
+The following is an example of how a SPARQL query could be used with zero-knowledge proofs to query across multiple credentials and derive only the specific information needed (vehicle classes the customer can drive), without revealing any other personal information:
+
+```sparql
+PREFIX dvla: <https://vocabulary.dvla.gov.uk/2023/terms/>
+PREFIX ho: <https://vocabulary.homeoffice.gov.uk/2023/terms/>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX cust: <did:example:ebfeb1f712ebc6f1c276e12ec21#>
+
+SELECT ?vehicleClass ?description
+WHERE {
+  # Driving license information (issued by DVLA)
+  cust: dvla:hasVehicleCategory ?category .
+  ?category dvla:categoryCode ?vehicleClass ;
+            dvla:categoryDescription ?description .
+  
+  # Visa status information (issued by Home Office)
+  cust: ho:visaStatus "Active" .
+  cust: ho:entryPermission ?permission .
+  ?permission ho:vehicleHirePermitted true .
+  
+  # Only return class C vehicles
+  FILTER(STRSTARTS(?vehicleClass, "C"))
+}
+```
+
+The response would include only the list of Class C vehicles the customer is eligible to drive, with a zero-knowledge proof attesting that:
+
+1. The driving license information is signed by a trusted authority (DVLA)
+2. The visa information is signed by a trusted authority (UK Home Office)
+3. The visa explicitly permits vehicle hire
+4. The driving license includes the stated vehicle classes
+5. No additional information from these credentials is disclosed
+
+Example response structure:
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://www.w3.org/ns/credentials/examples/v2",
+    "https://vocabulary.zkp.org/2023/terms/"
+  ],
+  "type": "QueryResponse",
+  "results": [
+    {
+      "vehicleClass": "C1",
+      "description": "Medium-sized vehicles between 3,500kg and 7,500kg"
+    }
+  ],
+  "proof": {
+    "type": "ZeroKnowledgeProof",
+    "verificationMethod": "https://did.example.org/issuer#key-1",
+    "created": "2023-05-10T12:00:00Z",
+    "trustedIssuers": [
+      "https://dvla.gov.uk/issuers/42",
+      "https://homeoffice.gov.uk/issuers/65"
+    ],
+    "proofValue": "z3dCTC9bFs3Qd...Ah4B5NyyQ8KPM29"
+  }
+}
+```
+</details>
+
+### RDF 1.2 Data Representation for Queryable Credentials
+
+<details>
+<summary>Click to expand RDF 1.2 Data Representation</summary>
+
+The underlying RDF data structure that enables the SPARQL query uses RDF 1.2's ability to make statements about statements (reification). This allows properly attributing claims to their issuers:
+
+```ttl
+@prefix : <https://example.org/terms/> .
+@prefix dvla: <https://vocabulary.dvla.gov.uk/2023/terms/> .
+@prefix ho: <https://vocabulary.homeoffice.gov.uk/2023/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cust: <did:example:ebfeb1f712ebc6f1c276e12ec21#> .
+
+# DVLA's claims about the customer's driving eligibility
+:UKDrivingAuthority :claims <<cust: dvla:hasVehicleCategory _:cat1>> .
+:UKDrivingAuthority :claims <<_:cat1 dvla:categoryCode "B">> .
+:UKDrivingAuthority :claims <<_:cat1 dvla:categoryDescription "Motor vehicles ≤ 3,500kg">> .
+:UKDrivingAuthority :claims <<_:cat1 dvla:validFrom "2021-04-15T00:00:00Z"^^xsd:dateTime>> .
+
+:UKDrivingAuthority :claims <<cust: dvla:hasVehicleCategory _:cat2>> .
+:UKDrivingAuthority :claims <<_:cat2 dvla:categoryCode "C1">> .
+:UKDrivingAuthority :claims <<_:cat2 dvla:categoryDescription "Medium-sized vehicles between 3,500kg and 7,500kg">> .
+:UKDrivingAuthority :claims <<_:cat2 dvla:validFrom "2021-04-15T00:00:00Z"^^xsd:dateTime>> .
+
+# UK Home Office claims about visa status
+:UKImmigrationAuthority :claims <<cust: ho:visaStatus "Active">> .
+:UKImmigrationAuthority :claims <<cust: ho:entryPermission _:permission>> .
+:UKImmigrationAuthority :claims <<_:permission ho:vehicleHirePermitted true>> .
+:UKImmigrationAuthority :claims <<_:permission ho:workPermitted true>> .
+:UKImmigrationAuthority :claims <<_:permission ho:studyPermitted true>> .
+
+# Each set of claims has its own signature
+:UKDrivingAuthority :signature _:sig1 .
+_:sig1 :signatureValue "eyJhbGciOiJFUzI1..." .
+_:sig1 :created "2021-04-15T00:00:00Z"^^xsd:dateTime .
+
+:UKImmigrationAuthority :signature _:sig2 .
+_:sig2 :signatureValue "eyJhbGciOiJFUzI1..." .
+_:sig2 :created "2022-03-01T00:00:00Z"^^xsd:dateTime .
+```
+
+This structure allows zero-knowledge proofs to attest that query results are derived solely from signed facts, without revealing the actual triples used.
+</details>
+
 ## Data Access Rules Example
 
 <details>
@@ -321,4 +439,15 @@ sequenceDiagram
 ```
 </details>
 
-This example demonstrates how queryable credentials can simplify the car hire process while protecting privacy and ensuring data minimization. The car hire company gets only the information it needs (ability to drive Class C vehicles in the UK), without handling or storing unnecessary sensitive personal documents.
+## Comparison of Approaches
+
+| Feature | Current DCQL Approach | Proposed SPARQL+ZKP Approach |
+|---------|----------------------|----------------------------|
+| Cross-credential queries | ❌ Limited to filtering individual credentials | ✅ Can query across multiple credentials |
+| Derived facts | ❌ Cannot derive new facts from credentials | ✅ Can derive conclusions from multiple facts |
+| Data minimization | ⚠️ Reveals entire credential fields | ✅ Reveals only the exact data needed |
+| Privacy | ⚠️ Limited to credential-level selective disclosure | ✅ True zero-knowledge proof of only what's needed |
+| Range queries | ❌ Requires issuer to issue range predicate such as is_over_18 (as is currently the case with the ISO mobile Drivers License) | ✅ Full support for filters and conditions |
+| Trust model | ⚠️ Trust individual credential issuers | ✅ Trust combinations of issuers for derived facts |
+
+This example demonstrates how queryable credentials with SPARQL and zero-knowledge proofs can significantly enhance privacy while providing exactly the information needed for the car hire process. The car hire company gets only the list of Class C vehicles the customer is eligible to drive, with cryptographic proof that this information is derived from trusted credentials, without revealing any underlying personal data.
