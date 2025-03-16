@@ -82,6 +82,7 @@ And have a zero-knowledge proof proving that the statement is true if you trust 
 ## Explicit Goals
 
 - Ongoing engagement with W3C and IEEE standards groups to solve challenges faced by current standards implementors
+- Work towards having this to a level of practicality where it can be used as an [orchestration service](https://www.gov.uk/government/publications/uk-digital-identity-and-attributes-trust-framework-04/uk-digital-identity-and-attributes-trust-framework-gamma-04-pre-release#rules-for-orchestration-service-providers) within the UK DVS framework
 - Build a solution which allows Semantic Web Agents to operate over trusted data
 - Produce novel algorithmic insights for academic publication
 
@@ -163,6 +164,7 @@ Based on the above, it seems to me that the most sensible way forward is to in p
   - SPARQL does *not* have a standardised proof / explanation format. This needs to be designed first
   - Notation3 has an ad-hoc proof standard which is implemented by [eye](https://github.com/eyereasoner/eye). We are working to have [n3proof.rs](https://github.com/jeswr/n3proof.rs) faithfully implement this so that we can run this proof checker within the ZKVM
 - Take a similar approach to [PoneglyphDB](https://arxiv.org/pdf/2411.15031) [[code](https://github.com/tuzijun111/halo2-TPCH)] which is a zero knowledge prover for SQL.
+
 
 ## More general pointers
 
