@@ -163,7 +163,7 @@ Based on the above, it seems to me that the most sensible way forward is to in p
 - Test performance of using [riskzero](https://risczero.com) to check N3 Proofs or SPARQL proofs that have already been generated - so that the full query evaluation does not need to be performed inside the ZKVM. Work in this direction
   - SPARQL does *not* have a standardised proof / explanation format. This needs to be designed first
   - Notation3 has an ad-hoc proof standard which is implemented by [eye](https://github.com/eyereasoner/eye). We are working to have [n3proof.rs](https://github.com/jeswr/n3proof.rs) faithfully implement this so that we can run this proof checker within the ZKVM
-- Take a similar approach to [PoneglyphDB](https://arxiv.org/pdf/2411.15031) [[code](https://github.com/tuzijun111/halo2-TPCH)] which is a zero knowledge prover for SQL.
+- Take a similar approach to [PoneglyphDB](https://arxiv.org/pdf/2411.15031) [[code](https://github.com/tuzijun111/halo2-TPCH)] which is a zero knowledge prover for SQL
 
 ## More general pointers
 
@@ -205,7 +205,6 @@ It seems that it is possible to generate ZKPs out of the box using risczero and 
 
 - Will be able to make this subsecond if implemented as a custom circuit, but that is a very expensive thing to do in terms of time investment. Circom is *not* an option if we want to have our proofs work at arbitrary depth. OTOH Halo2 will work, but is a lot of dev work.
 - Alternatively, (1) do a proof checker in a ZKVM and then optimise the hell out of it
-
 
 ## Other Links:
 

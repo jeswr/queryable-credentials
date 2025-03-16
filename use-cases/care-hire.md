@@ -1,5 +1,7 @@
 # Care Hire Use Case
 
+*Parts of this document are created using Generative AI - there are known inaccuracies in this example that need to be resolved.*
+
 ## Overview
 
 This use case describes how a care hire company can verify a customer's eligibility to drive a Class C vehicle in the UK without directly accessing sensitive personal documents.
