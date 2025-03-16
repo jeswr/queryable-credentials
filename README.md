@@ -158,7 +158,11 @@ Based on the above, it seems to me that the most sensible way forward is to in p
 - Work on improved hashing algorithms that would begin to allow e.g. range proofs when added to the existing [BBS](https://www.w3.org/TR/vc-di-bbs/#test-vectors) VC spec.
 - Reach out to the authors of [Lean ZKP](https://eprint.iacr.org/2024/267.pdf) to understand the feasibility of implementing a solution on top of their work.
 - Evaluate the feasibility of implementation on top of [Circuitree](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9718332).
-- Experiment with implementing some basic SPARQL opertions on top of [riskzero](https://risczero.com) to get a sense of how easy it is to build any kind of ZKP query evalutation on top of that systen - and what plumbing needs to be done to create the type of APIs that we want.
+- ✅ Experiment with implementing some basic SPARQL opertions on top of [riskzero](https://risczero.com) to get a sense of how easy it is to build any kind of ZKP query evalutation on top of that systen - and what plumbing needs to be done to create the type of APIs that we want. (Done at https://github.com/jeswr/risc0-sparql-poc)
+- Test performance of using [riskzero](https://risczero.com) to check N3 Proofs or SPARQL proofs that have already been generated - so that the full query evaluation does not need to be performed inside the ZKVM. Work in this direction
+  - SPARQL does *not* have a standardised proof / explanation format. This needs to be designed first
+  - Notation3 has an ad-hoc proof standard which is implemented by [eye](https://github.com/eyereasoner/eye). We are working to have [n3proof.rs](https://github.com/jeswr/n3proof.rs) faithfully implement this so that we can run this proof checker within the ZKVM
+- Take a similar approach to [PoneglyphDB](https://arxiv.org/pdf/2411.15031) [[code](https://github.com/tuzijun111/halo2-TPCH)] which is a zero knowledge prover for SQL.
 
 ## More general pointers
 

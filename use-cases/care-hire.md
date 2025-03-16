@@ -98,6 +98,7 @@ sequenceDiagram
   }
 }
 ```
+
 </details>
 
 ### 2. Visa Status Credential
@@ -138,6 +139,7 @@ sequenceDiagram
   }
 }
 ```
+
 </details>
 
 ### 3. Car Hire Company Certification Credential
@@ -177,6 +179,7 @@ sequenceDiagram
   }
 }
 ```
+
 </details>
 
 ### 4. Driving Eligibility Derived Credential
@@ -214,6 +217,7 @@ sequenceDiagram
   }
 }
 ```
+
 </details>
 
 ## Query Examples
@@ -277,6 +281,7 @@ The following is an example of a DCQL query that car hire companies must use tod
   ]
 }
 ```
+
 </details>
 
 ### Proposed Approach: SPARQL with Zero-Knowledge Proof
@@ -346,6 +351,7 @@ Example response structure:
   }
 }
 ```
+
 </details>
 
 ### RDF 1.2 Data Representation for Queryable Credentials
@@ -391,6 +397,7 @@ _:sig2 :created "2022-03-01T00:00:00Z"^^xsd:dateTime .
 ```
 
 This structure allows zero-knowledge proofs to attest that query results are derived solely from signed facts, without revealing the actual triples used.
+
 </details>
 
 ## Data Access Rules Example
@@ -437,18 +444,18 @@ This structure allows zero-knowledge proofs to attest that query results are der
   }
 }
 ```
+
 </details>
 
 ## Comparison of Approaches
 
-| Feature | Current DCQL Approach | Proposed SPARQL+ZKP Approach |
-|---------|----------------------|----------------------------|
-| Cross-credential queries | ❌ Limited to filtering individual credentials | ✅ Can query across multiple credentials |
-| Derived facts | ❌ Cannot derive new facts from credentials | ✅ Can derive conclusions from multiple facts |
-| Data minimization | ⚠️ Reveals entire credential fields | ✅ Reveals only the exact data needed |
-| Privacy | ⚠️ Limited to credential-level selective disclosure | ✅ True zero-knowledge proof of only what's needed |
-| Range queries | ❌ Requires issuer to issue range predicate such as is_over_18 (as is currently the case with the ISO mobile Drivers License) | ✅ Full support for filters and conditions |
-| Trust model | ⚠️ Trust individual credential issuers | ✅ Trust combinations of issuers for derived facts |
+| Feature                  | Current DCQL Approach                                                                                                         | Proposed SPARQL+ZKP Approach                       |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Cross-credential queries | ❌ Limited to filtering individual credentials                                                                                | ✅ Can query across multiple credentials           |
+| Derived facts            | ❌ Cannot derive new facts from credentials                                                                                   | ✅ Can derive conclusions from multiple facts      |
+| Data minimization        | ⚠️ Reveals entire credential fields                                                                                         | ✅ Reveals only the exact data needed              |
+| Privacy                  | ⚠️ Limited to credential-level selective disclosure                                                                         | ✅ True zero-knowledge proof of only what's needed |
+| Range queries            | ❌ Requires issuer to issue range predicate such as is_over_18 (as is currently the case with the ISO mobile Drivers License) | ✅ Full support for filters and condition          |
 
 This example demonstrates how queryable credentials with SPARQL and zero-knowledge proofs can significantly enhance privacy while providing exactly the information needed for the car hire process. The car hire company gets only the list of Class C vehicles the customer is eligible to drive, with cryptographic proof that this information is derived from trusted credentials, without revealing any underlying personal data.
 
