@@ -1,3 +1,5 @@
+## Discovery of e-access (and potential Solid + OIDC4VP use-case)
+
 Access management for e-resources. The user-flow is:
 -	I want to read ISO37124 in my e-reader (which, if no other defined default is available - will be my browser).
 -	I am a student at the University of Oxford, and thus, the University is paying for the access rights for that document through an existing contract with ISO.
