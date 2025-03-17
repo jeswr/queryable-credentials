@@ -165,6 +165,16 @@ Based on the above, it seems to me that the most sensible way forward is to in p
   - Notation3 has an ad-hoc proof standard which is implemented by [eye](https://github.com/eyereasoner/eye). We are working to have [n3proof.rs](https://github.com/jeswr/n3proof.rs) faithfully implement this so that we can run this proof checker within the ZKVM
 - Take a similar approach to [PoneglyphDB](https://arxiv.org/pdf/2411.15031) [[code](https://github.com/tuzijun111/halo2-TPCH)] which is a zero knowledge prover for SQL
 
+## Theoretical Contributions
+
+We propose the following theoretical contributions:
+
+* Complexity bounds of the following (as compared to query/inference evaluation) - for both SPARQL and N3 queries
+  * Proof Generation (full knowledge)
+  * Proof Checking (full knowledge)
+  * Proof Generation (zero knolwedge)
+  * Proof Verification (zero knowledge)
+
 ## More general pointers
 
 - https://learn.0xparc.org/materials/circom/learning-group-1/functional-commitments
@@ -210,3 +220,4 @@ It seems that it is possible to generate ZKPs out of the box using risczero and 
 
 * Discsussion of ZKP in EUDI reference architecture https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/192
 * Combining W3C Verifiable Credentials and ISO mDLs https://collateral-library-production.s3.amazonaws.com/uploads/asset_file/attachment/36416/CS676613_-_Digital_Credentials_promotion_campaign-White_Paper_R3.pdf
+* Discussion of research plan with GPT-4.5 Deep Research https://chatgpt.com/share/67d75cd9-243c-800c-9fcf-a174eafe9c29
